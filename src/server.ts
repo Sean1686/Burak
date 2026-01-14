@@ -1,7 +1,6 @@
-console.log("ts compiled file running");
+import dotenv from "dotenv";
+dotenv.config();
 
-import moment from "moment";
-const currentTime = moment().format("Y M D");
-console.log(currentTime);
-const persn: string = "Nathan";
-const count: number = 200;
+console.log("PORT:", process.env.PORT);
+
+console.log("MONGO_URL:", process.env.MONGO_URL);

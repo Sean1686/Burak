@@ -1,3 +1,5 @@
+// MIT task G
+
 function getTheHigestIndex(highest) {
     let max = highest[0];
     let maxIndex = 0;
