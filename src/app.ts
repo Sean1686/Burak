@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import router from "./router";
+import routerAdmin from "./routerAdmin";
 
 /** 1-entrance */
 const app = express();
@@ -15,7 +16,8 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 /** 4-routers */
-app.use("/", router);
+app.use("/admin", routerAdmin); // SSR: EJS
+app.use("/", router); // SPA: REACT
 
 /** 5-error handling */
 // app.use((req, res) => {
