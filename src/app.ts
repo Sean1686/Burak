@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import router from "./router";
 
 /** 1-entrance */
 const app = express();
@@ -14,5 +15,11 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 /** 4-routers */
+app.use("/", router);
+
+/** 5-error handling */
+// app.use((req, res) => {
+//     res.status(404).render("404 Page Not Found");
+// });
 
 export default app;
