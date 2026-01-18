@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import router from "./router";
 import routerAdmin from "./routerAdmin";
+import Memberservise from "./models/Member.servise";
 
 /** 1-entrance */
 const app = express();
