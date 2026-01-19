@@ -1,23 +1,33 @@
+/* Project Standards
+ - Logging Stantardards
+ - Naming Standards
+    - Function, Method, and Variable => Camel Case (e.g., myFunction, calculateTotal)
+    - Class and Interface => Pascal Case (e.g., MyClass, IUser)
+    - Folders and Files => Kebab Case (e.g., my-folder, user-service.ts)
+    - CSS => Snake Case (e.g., my_style.css)
+*/
+
+
 // MIT task H2
-function majorityElement(arr: number[]): number | null {
-  const count: Record<number, number> = {};
-  let maxCount: number = 0;
-  let result: number | null = null;
+// function majorityElement(arr: number[]): number | null {
+//   const count: Record<number, number> = {};
+//   let maxCount: number = 0;
+//   let result: number | null = null;
 
-  for (const num of arr) {
-    count[num] = (count[num] ?? 0) + 1;
+//   for (const num of arr) {
+//     count[num] = (count[num] ?? 0) + 1;
 
-    if (count[num] > maxCount) {
-      maxCount = count[num];
-      result = num;
-    }
-  }
+//     if (count[num] > maxCount) {
+//       maxCount = count[num];
+//       result = num;
+//     }
+//   }
 
-  return result;
-}
+//   return result;
+// }
 
-// Test
-console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 4
+// // Test
+// console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 4
 
 
 

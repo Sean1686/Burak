@@ -3,13 +3,15 @@ import path from "path";
 import router from "./router";
 import routerAdmin from "./routerAdmin";
 import Memberservise from "./models/Member.servise";
+import morgan from "morgan";
+import { MORGAN_FORMAT } from "./libs/config";
 
 /** 1-entrance */
 const app = express();
 app.use(express.static(path.join(__dirname, "public")))
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-
+app.use(morgan(MORGAN_FORMAT));
 /** 2-session */
 
 /** 3-views */

@@ -4,6 +4,7 @@ import express, { Request, Response } from 'express';
 const restaurantController: T = {};
 restaurantController.goHome = (req: Request, res: Response) => {
     try {
+        console.log("Going to Home page");
         res.send("You are at the Home page");
     } catch (error) {
         console.error("Error going home:", error);
@@ -12,6 +13,7 @@ restaurantController.goHome = (req: Request, res: Response) => {
 
 restaurantController.goLogin = (req: Request, res: Response) => {
     try {
+        console.log("Going to Login page");
         res.send("You are at the Login page");
     } catch (error) {
         console.error("Error going to login:", error);
@@ -20,6 +22,7 @@ restaurantController.goLogin = (req: Request, res: Response) => {
 
 restaurantController.goSignup = (req: Request, res: Response) => {
     try {
+        console.log("Going to Signup page");
         res.send("You are at the Signup page");
     } catch (error) {
         console.error("Error going to signup:", error);
