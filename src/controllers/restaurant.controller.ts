@@ -1,5 +1,8 @@
+import MemberService from "../models/Member.servise";
 import { T } from "../libs/types/common";
 import express, { Request, Response } from 'express';
+import { MemberInput } from "../libs/types/Member";
+import { Membertype } from "../libs/types/enums/member.enum";
 
 const restaurantController: T = {};
 restaurantController.goHome = (req: Request, res: Response) => {
@@ -39,9 +42,16 @@ restaurantController.processLogin = (req: Request, res: Response) => {
     }
 };
 
-restaurantController.processSignup = (req: Request, res: Response) => {
+restaurantController.processSignup = async(req: Request, res: Response) => {
     try {
-        console.log("Processing signup");   
+        console.log("Processing signup");  
+                console.log("Request Body:", req.body);
+
+                const newMember: MemberInput = req.body;
+                newMember.memberType = Membertype.RESTAURANT;
+
+                const memberService = new MemberService();
+                await memberService.processSignup(newMember);
         res.send("Signup processed successfully");
     } catch (error) {
         console.error("Error processing signup:", error);
