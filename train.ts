@@ -8,6 +8,24 @@
 */
 
 
+
+// MIT task J
+
+function findLongestWord(str: string): string {
+  const words: string[] = str.split(" ");
+  let longestWord: string = "";
+
+  for (const word of words) {
+    if (word.length > longestWord.length) {
+      longestWord = word;
+    }
+  }
+
+  return longestWord;
+}
+
+
+console.log(findLongestWord("I am from Uzbekistan"));
 // MIT task H2
 // function majorityElement(arr: number[]): number | null {
 //   const count: Record<number, number> = {};
