@@ -1,4 +1,4 @@
-export enum HTTP_CODES {
+export enum HttpCodes {
     OK = 200,
     CREATED = 201,
     NO_CONTENT = 204,
@@ -13,16 +13,23 @@ export enum HTTP_CODES {
 export enum Massages {
     SOMETHING_WENT_WRONG = "Something went wrong. Please try again.",
     GENERIC_ERROR = "An unexpected error occurred. Please try again later.",
-    NOT_FOUND = "The requested resource was not found.",
+    NOT_DATA_FOUND = "The requested resource was not found.",
+    CREATE_FAILED = "Failed to create the resource.",
+    UPDATE_FAILED = "Failed to update the resource.",
+    DELETE_FAILED = "Failed to delete the resource.",
     UNAUTHORIZED = "You are not authorized to access this resource.",
     FORBIDDEN = "Access to this resource is forbidden.",
     BAD_REQUEST = "The request was invalid or cannot be served.",
+
+    USED_NICK_PHONE = "The nickname or phone number is already in use.",
+    NO_MEMBER_FOUND = "No member found with the provided credentials.",
+    WRONG_PASSWORD = "The password provided is incorrect.",
 }
 class Errors extends Error {
-    public code: HTTP_CODES;
+    public code: HttpCodes;
     public massage: Massages;
 
-    constructor(satusCode: HTTP_CODES, statusMassage: Massages) {
+    constructor(satusCode: HttpCodes, statusMassage: Massages) {
         super();
         this.code = satusCode;
         this.massage = statusMassage;

@@ -1,11 +1,11 @@
 import MemberService from "../models/Member.servise";
 import { T } from "../libs/types/common";
 import express, { Request, Response } from 'express';
-import { MemberInput } from "../libs/types/Member";
+import { MemberInput, LoginInput } from "../libs/types/Member";
 import { Membertype } from "../libs/types/enums/member.enum";
 
 const restaurantController: T = {};
-restaurantController.goHome = (req: Request, res: Response) => {
+restaurantController.getHome = (req: Request, res: Response) => {
     try {
         console.log("Going to Home page");
         res.send("You are at the Home page");
@@ -15,7 +15,7 @@ restaurantController.goHome = (req: Request, res: Response) => {
     }
 };
 
-restaurantController.goLogin = (req: Request, res: Response) => {
+restaurantController.getLogin = (req: Request, res: Response) => {
     try {
         console.log("Going to Login page");
         res.send("You are at the Login page");
@@ -24,7 +24,7 @@ restaurantController.goLogin = (req: Request, res: Response) => {
     }
 };
 
-restaurantController.goSignup = (req: Request, res: Response) => {
+restaurantController.getSignup = (req: Request, res: Response) => {
     try {
         console.log("Going to Signup page");
         res.send("You are at the Signup page");
@@ -33,12 +33,20 @@ restaurantController.goSignup = (req: Request, res: Response) => {
     }
 };
 
-restaurantController.processLogin = (req: Request, res: Response) => {
+restaurantController.processLogin = async (req: Request, res: Response) => {
     try {
         console.log("Processing login");
-        res.send("Login processed successfully");
+        console.log("Request Body:", req.body);
+        const input: LoginInput = req.body;
+
+        const memberService = new MemberService();
+        // Here you would typically call a method on memberService to process the login
+        const result = await memberService.processLogin(input);
+        console.log("Login processed successfully");
+        res.send(result);
     } catch (error) {
         console.error("Error processing login:", error);
+        res.send(error);
     }
 };
 
@@ -51,10 +59,12 @@ restaurantController.processSignup = async(req: Request, res: Response) => {
                 newMember.memberType = Membertype.RESTAURANT;
 
                 const memberService = new MemberService();
-                await memberService.processSignup(newMember);
-        res.send("Signup processed successfully");
-    } catch (error) {
-        console.error("Error processing signup:", error);
+               const result = await memberService.processSignup(newMember);
+        console.log("Signup processed successfully");
+        res.send(result);
+    } catch (err) {
+        console.log("Error processing signup:", err);
+        res.send(err);
     }
 };
 

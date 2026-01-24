@@ -4,15 +4,15 @@ import restaurantController from './controllers/restaurant.controller';
 
 
 /** Restaurant Controller */
-routerAdmin.get('/', restaurantController.goHome);
+routerAdmin.get('/', restaurantController.getHome);
 
 routerAdmin
-    .get("/login", restaurantController.goLogin)
-    .post("/login/process", restaurantController.processLogin);
+    .get("/login", restaurantController.getLogin)
+    .post("/login", restaurantController.processLogin);
 
 routerAdmin
-    .get("/signup", restaurantController.goSignup)
-    .post("/signup/process", restaurantController.processSignup);
+    .get("/signup", restaurantController.getSignup)
+    .post("/signup", restaurantController.processSignup);
 
     /** Product */
     /** User */

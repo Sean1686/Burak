@@ -2,15 +2,15 @@ import express from "express";
 import path from "path";
 import router from "./router";
 import routerAdmin from "./router-admin";
-import Memberservise from "./models/Member.servise";
+import Memberservise from "./models/Member.servise";    
 import morgan from "morgan";
 import { MORGAN_FORMAT } from "./libs/config";
 
 /** 1-entrance */
 const app = express();
 app.use(express.static(path.join(__dirname, "public")))
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
+app.use(express.urlencoded({extended: true})); // HTML form kelayotgan requestlarni parse(tartib bilan orgniga qoyib beradi) qilish uchun
+app.use(express.json()); // json formatdagi kelayotgan requestlarni obyektga ozgartirish uchun
 app.use(morgan(MORGAN_FORMAT));
 /** 2-session */
 
