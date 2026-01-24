@@ -10,7 +10,7 @@ export enum HttpCodes {
     INTERNAL_SERVER_ERROR = 500,
 }
 
-export enum Massages {
+export enum Messages {
     SOMETHING_WENT_WRONG = "Something went wrong. Please try again.",
     GENERIC_ERROR = "An unexpected error occurred. Please try again later.",
     NOT_DATA_FOUND = "The requested resource was not found.",
@@ -27,9 +27,9 @@ export enum Massages {
 }
 class Errors extends Error {
     public code: HttpCodes;
-    public massage: Massages;
+    public massage: Messages;
 
-    constructor(satusCode: HttpCodes, statusMassage: Massages) {
+    constructor(satusCode: HttpCodes, statusMassage: Messages) {
         super();
         this.code = satusCode;
         this.massage = statusMassage;

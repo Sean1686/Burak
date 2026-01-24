@@ -60,7 +60,7 @@ restaurantController.processSignup = async(req: Request, res: Response) => {
 
                 const memberService = new MemberService();
                const result = await memberService.processSignup(newMember);
-        console.log("Signup processed successfully");
+        console.log("Signup processed successfully", result);
         res.send(result);
     } catch (err) {
         console.log("Error processing signup:", err);

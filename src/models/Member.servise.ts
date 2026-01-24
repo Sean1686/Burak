@@ -1,6 +1,7 @@
 import MemberModel from "../schema/Member.model";
 import { MemberInput, Member, LoginInput } from "../libs/types/Member";
-import Errors, { HttpCodes, Massages } from "../libs/Error";
+import * as bcrypt from "bcryptjs";
+import Errors, { HttpCodes, Messages } from "../libs/Error";
 import { Membertype as MemberType } from "../libs/types/enums/member.enum";
 
 class MemberService {
@@ -16,16 +17,21 @@ class MemberService {
         .exec();
         if (exist) {
             console.log("Restaurant member already exists:", exist);
-            throw new Errors(HttpCodes.BAD_REQUEST, Massages.CREATE_FAILED);
+            throw new Errors(HttpCodes.BAD_REQUEST, Messages.CREATE_FAILED);
         }
+
+            const salt = await bcrypt.genSalt();
+            input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
+
+            
         try {
-            const result1 = await this.memberModel.create(input);
-            result1.memberPassword = "";
-            return result1;
+            const result = await this.memberModel.create(input);
+            result.memberPassword = "";
+            return result;
         } catch (err) {
-            throw new Errors(HttpCodes.BAD_REQUEST, Massages.SOMETHING_WENT_WRONG);
+            throw new Errors(HttpCodes.BAD_REQUEST, Messages.SOMETHING_WENT_WRONG);
         }
-    }
+    };
 
     public async processLogin(input: LoginInput): Promise<Member> {
         const member = await this.memberModel
@@ -33,10 +39,14 @@ class MemberService {
          {memberNick: input.memberNick},
          {memberNick: 1, memberPassword: 1,})
         .exec();
-        if (!member) throw new Errors(HttpCodes.NOT_FOUND, Massages.NO_MEMBER_FOUND);
-        const isMatch = member.memberPassword === input.memberPassword;
-        if(!isMatch) throw new Errors(HttpCodes.UNAUTHORIZED, Massages.WRONG_PASSWORD);
-        member.memberPassword = "";
+        if (!member) throw new Errors(HttpCodes.NOT_FOUND, Messages.NO_MEMBER_FOUND);
+
+        const isMatch = await bcrypt.compare(
+         input.memberPassword,
+         member.memberPassword
+        );
+       
+        if(!isMatch) throw new Errors(HttpCodes.UNAUTHORIZED, Messages.WRONG_PASSWORD);
 
         const result = await this.memberModel.findById(member._id).exec();
 
