@@ -1,3 +1,21 @@
+//MIT task K 
+
+function countVowels(input: string): number {
+  const inputString: string = "aeiouAEIOU";
+  let vowels: number = 0;
+
+  for ( const char of input) {
+    if (inputString.includes(char)) {
+      vowels++;
+    }
+  }
+
+  return vowels;
+}
+console.log(countVowels("string"));
+
+
+
 /* Project Standards
  - Logging Stantardards
  - Naming Standards
@@ -11,21 +29,7 @@
 
 // MIT task J
 
-function findLongestWord(str: string): string {
-  const words: string[] = str.split(" ");
-  let longestWord: string = "";
 
-  for (const word of words) {
-    if (word.length > longestWord.length) {
-      longestWord = word;
-    }
-  }
-
-  return longestWord;
-}
-
-
-console.log(findLongestWord("I am from Uzbekistan"));
 // MIT task H2
 // function majorityElement(arr: number[]): number | null {
 //   const count: Record<number, number> = {};
