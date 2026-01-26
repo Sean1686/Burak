@@ -1,28 +1,42 @@
+import { LoginInput } from "../libs/types/Member";
 import { T } from "../libs/types/common";
 import express, { Request, Response } from 'express';
+import MemberService from "../models/Member.servise";
+import { Member, MemberInput } from "../libs/types/Member";
+import Errors, { HttpCodes } from "../libs/Error";
+
+    const memberService = new MemberService();
 
 const memberController: T = {};
-memberController.goHome = (req: Request, res: Response) => {
+memberController.signup = async(req: Request, res: Response) => {
     try {
-        res.send("You are at the Home page");
-    } catch (error) {
-        console.error("Error going home:", error);
-    }
-};
+        console.log("Signup");  
+                console.log("Request Body:", req.body);
+                const input: MemberInput = req.body,
+                 result: Member = await memberService.signup(input);
+                              //  TODO: TOKEN GENERATE HERE
 
-memberController.goLogin = (req: Request, res: Response) => {
-    try {
-        res.send("You are at the Login page");
-    } catch (error) {
-        console.error("Error going to login:", error);
-    }
+               res.json({ member: result });
+    } catch (err) {
+        console.log("Error, Signup:", err);
+        if (err instanceof Errors) res.status(err.code).json({ err });
+        else res.status(Errors.standard.code).json(Errors.standard);
+    };
 };
-
-memberController.goSignup = (req: Request, res: Response) => {
+memberController.login = async (req: Request, res: Response) => {
     try {
-        res.send("You are at the Signup page");
+        console.log("Login");
+        console.log("Request Body:", req.body);
+        const input: LoginInput = req.body,
+        // Here you would typically call a method on memberService to process the login
+         result: Member = await memberService.login(input);
+                         //  TODO: TOKEN GENERATE HERE
+
+
+          res.json({ member: result });
     } catch (error) {
-        console.error("Error going to signup:", error);
+        if (error instanceof Errors) res.status(error.code).json({ error });
+        else res.status(Errors.standard.code).json(Errors.standard);
     }
 };
 

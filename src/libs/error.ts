@@ -29,6 +29,11 @@ class Errors extends Error {
     public code: HttpCodes;
     public massage: Messages;
 
+    static standard = {
+        code: HttpCodes.INTERNAL_SERVER_ERROR,
+        message: Messages.SOMETHING_WENT_WRONG,
+    };
+
     constructor(satusCode: HttpCodes, statusMassage: Messages) {
         super();
         this.code = satusCode;
