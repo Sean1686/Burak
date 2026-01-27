@@ -1,18 +1,29 @@
+// MIT task L
+function reversedSentence(str: string): string {
+  return str
+    .split(' ')
+    .map((word: string) => word.split('').reverse().join(''))
+    .join(' ');
+}
+
+const result = reversedSentence("We like coding");
+console.log(result); 
+
 //MIT task K 
 
-function countVowels(input: string): number {
-  const inputString: string = "aeiouAEIOU";
-  let vowels: number = 0;
+// function countVowels(input: string): number {
+//   const inputString: string = "aeiouAEIOU";
+//   let vowels: number = 0;
 
-  for ( const char of input) {
-    if (inputString.includes(char)) {
-      vowels++;
-    }
-  }
+//   for ( const char of input) {
+//     if (inputString.includes(char)) {
+//       vowels++;
+//     }
+//   }
 
-  return vowels;
-}
-console.log(countVowels("string"));
+//   return vowels;
+// }
+// console.log(countVowels("string"));
 
 
 
