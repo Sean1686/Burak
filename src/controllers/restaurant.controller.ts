@@ -10,7 +10,7 @@ const restaurantController: T = {};
 restaurantController.getHome = (req: Request, res: Response) => {
     try {
         console.log("Going to Home page");
-        res.send("You are at the Home page");
+        res.render("home");
         // send | render | json | redirect | end
     } catch (error) {
         console.error("Error going home:", error);
@@ -20,7 +20,7 @@ restaurantController.getHome = (req: Request, res: Response) => {
 restaurantController.getLogin = (req: Request, res: Response) => {
     try {
         console.log("Going to Login page");
-        res.send("You are at the Login page");
+        res.render("login");
     } catch (error) {
         console.error("Error going to login:", error);
     }
@@ -29,7 +29,7 @@ restaurantController.getLogin = (req: Request, res: Response) => {
 restaurantController.getSignup = (req: Request, res: Response) => {
     try {
         console.log("Going to Signup page");
-        res.send("You are at the Signup page");
+        res.render("signup");
     } catch (error) {
         console.error("Error going to signup:", error);
     }
