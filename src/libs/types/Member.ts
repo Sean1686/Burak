@@ -1,4 +1,5 @@
-import { Session } from "inspector";
+import { Session } from "express-session";
+import { Request } from "express"
 
 export interface Member {
     memberType: string;

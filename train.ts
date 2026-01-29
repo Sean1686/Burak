@@ -1,13 +1,24 @@
-// MIT task L
-function reversedSentence(str: string): string {
-  return str
-    .split(' ')
-    .map((word: string) => word.split('').reverse().join(''))
-    .join(' ');
+// MIT task M
+function getSquareNumbers(numbers: number[]) {
+  return numbers.map(num => ({
+    number: num,
+    square: num * num
+  }));
 }
+console.log(getSquareNumbers([1, 2, 3, 4, 5]));
 
-const result = reversedSentence("We like coding");
-console.log(result); 
+
+
+// MIT task L
+// function reversedSentence(str: string): string {
+//   return str
+//     .split(' ')
+//     .map((word: string) => word.split('').reverse().join(''))
+//     .join(' ');
+// }
+
+// const result = reversedSentence("We like coding");
+// console.log(result); 
 
 //MIT task K 
 

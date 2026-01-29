@@ -9,7 +9,7 @@ declare module 'express-session' {
 }
 import { MemberInput, LoginInput, AdminRequest } from "../libs/types/Member";
 import { Membertype } from "../libs/types/enums/member.enum";
-import { Messages } from "../libs/Error";
+import Errors, { Messages } from "../libs/Error";
 
     const memberService = new MemberService();
 
@@ -82,9 +82,24 @@ restaurantController.processLogin = async (req: Request, res: Response) => {
         res.send(result);
     } catch (error) {
         console.error("Error processing login:", error);
+        const message = error instanceof Errors ? error.message : Messages.SOMETHING_WENT_WRONG;
+         res.send(`<script>alert("${message}"); window.location.replace("/admin/login");</script>`);
         res.send(error);
     }
 };
+
+restaurantController.logout = async(req: AdminRequest, res: Response) => {
+    try {
+        console.log("Logging out user");
+        req.session.destroy(function () {
+            res.redirect('/admin');
+        })
+    } catch (err) {
+        console.log("Error processing logout:", err);
+        res.send(err);
+    }
+}
+
 
 restaurantController.checkAuthSession = async (req: Request, res: Response) => {
     try {
