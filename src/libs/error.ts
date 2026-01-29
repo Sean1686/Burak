@@ -24,6 +24,7 @@ export enum Messages {
     USED_NICK_PHONE = "The nickname or phone number is already in use.",
     NO_MEMBER_FOUND = "No member found with the provided credentials.",
     WRONG_PASSWORD = "The password provided is incorrect.",
+    NOT_AUTHENTICATED = 'You must be logged in first to access this resource.',
 }
 class Errors extends Error {
     public code: HttpCodes;
