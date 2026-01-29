@@ -1,3 +1,5 @@
+import { Session } from "inspector";
+
 export interface Member {
     memberType: string;
     memberNick: string;
@@ -28,3 +30,8 @@ export interface LoginInput {
     memberNick: string;
     memberPassword: string;
 };
+
+export interface AdminRequest extends Request {
+    member: Member;
+    session: Session & { member: Member };
+}
