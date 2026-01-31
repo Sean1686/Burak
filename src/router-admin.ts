@@ -19,7 +19,8 @@ routerAdmin.get("/check-me", restaurantController.checkAuthSession);
 
 
     /** Product */
-    routerAdmin.get("/product/all", productController.getAllProducts);
+    routerAdmin.get("/product/all", restaurantController.verifyRestaurant,
+                                    productController.getAllProducts);
     routerAdmin.get("/product/create", productController.createNewProducts);
     routerAdmin.get("/product/:id", productController.updateChosenProducts);
 

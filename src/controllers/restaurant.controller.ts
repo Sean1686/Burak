@@ -1,6 +1,6 @@
 import MemberService from "../models/Member.servise";
 import { T } from "../libs/types/common";
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 
 declare module 'express-session' {
     interface SessionData {
@@ -111,5 +111,19 @@ restaurantController.checkAuthSession = async (req: Request, res: Response) => {
         res.send(error);
     }
 };
+
+restaurantController.verifyRestaurant = (
+    req: AdminRequest,
+    res: Response,
+    next: NextFunction
+    ) => {
+        if(req.session?.member?.memberType === Membertype.RESTAURANT) {
+            req.member = req.session.member;
+           return next();
+        } else {
+        const message = Messages.NOT_AUTHENTICATED
+            res.send(`<script>alert("${message}"); window.location.replace('/admin/login'); </script>`);
+        }
+    }  
 
 export default restaurantController;
