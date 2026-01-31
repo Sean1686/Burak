@@ -1,6 +1,7 @@
 import express from 'express';
 const routerAdmin = express.Router();
 import restaurantController from './controllers/restaurant.controller';
+import productController from './controllers/product.controller';
 
 
 /** Restaurant Controller */
@@ -18,6 +19,10 @@ routerAdmin.get("/check-me", restaurantController.checkAuthSession);
 
 
     /** Product */
+    routerAdmin.get("/product/all", productController.getAllProducts);
+    routerAdmin.get("/product/create", productController.createNewProducts);
+    routerAdmin.get("/product/:id", productController.updateChosenProducts);
+
     /** User */
 
 export default routerAdmin;
