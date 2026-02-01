@@ -21,6 +21,7 @@ restaurantController.getHome = (req: Request, res: Response) => {
         // send | render | json | redirect | end
     } catch (error) {
         console.error("Error going home:", error);
+        res.send(error);
     }
 };
 
@@ -30,7 +31,8 @@ restaurantController.getLogin = (req: Request, res: Response) => {
         res.render("login");
     } catch (error) {
         console.error("Error going to login:", error);
-    }
+        res.send(error);
+}
 };
 
 restaurantController.getSignup = (req: Request, res: Response) => {
@@ -39,6 +41,7 @@ restaurantController.getSignup = (req: Request, res: Response) => {
         res.render("signup");
     } catch (error) {
         console.error("Error going to signup:", error);
+        res.send(error);
     }
 };
 
@@ -56,7 +59,6 @@ restaurantController.processSignup = async(req: AdminRequest, res: Response) => 
                         
 
         console.log("Signup processed successfully", result);
-        res.send(result);
     } catch (err) {
         console.log("Error processing signup:", err);
         res.send(err);
@@ -74,17 +76,15 @@ restaurantController.processLogin = async (req: Request, res: Response) => {
 
                                   req.session.member = result;
                             (req.session as any).save(function () {
-                              res.send(result);
+                           res.send(result);
                             });
                         
 
         console.log("Login processed successfully");
-        res.send(result);
     } catch (error) {
         console.error("Error processing login:", error);
         const message = error instanceof Errors ? error.message : Messages.SOMETHING_WENT_WRONG;
          res.send(`<script>alert("${message}"); window.location.replace("/admin/login");</script>`);
-        res.send(error);
     }
 };
 
@@ -124,6 +124,6 @@ restaurantController.verifyRestaurant = (
         const message = Messages.NOT_AUTHENTICATED
             res.send(`<script>alert("${message}"); window.location.replace('/admin/login'); </script>`);
         }
-    }  
+    };
 
 export default restaurantController;
