@@ -1,11 +1,19 @@
-// MIT task M
-function getSquareNumbers(numbers: number[]) {
-  return numbers.map(num => ({
-    number: num,
-    square: num * num
-  }));
+// MIT task N
+function paldromCheck(str: string): boolean {
+  return str === str.split('').reverse().join("");
 }
-console.log(getSquareNumbers([1, 2, 3, 4, 5]));
+
+  console.log(paldromCheck("dad"));
+  console.log(paldromCheck("son"));
+
+// MIT task M
+// function getSquareNumbers(numbers: number[]) {
+//   return numbers.map(num => ({
+//     number: num,
+//     square: num * num
+//   }));
+// }
+// console.log(getSquareNumbers([1, 2, 3, 4, 5]));
 
 
 
