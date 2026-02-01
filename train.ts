@@ -46,14 +46,6 @@ function paldromCheck(str: string): boolean {
 
 
 
-/* Project Standards
- - Logging Stantardards
- - Naming Standards
-    - Function, Method, and Variable => Camel Case (e.g., myFunction, calculateTotal)
-    - Class and Interface => Pascal Case (e.g., MyClass, IUser)
-    - Folders and Files => Kebab Case (e.g., my-folder, user-service.ts)
-    - CSS => Snake Case (e.g., my_style.css)
-*/
 
 
 
