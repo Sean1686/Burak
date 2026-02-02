@@ -9,7 +9,7 @@ declare module 'express-session' {
 }
 import { MemberInput, LoginInput, AdminRequest } from "../libs/types/Member";
 import { Membertype } from "../libs/types/enums/member.enum";
-import Errors, { Messages } from "../libs/Error";
+import Errors, { HttpCodes, Messages } from "../libs/Error";
 
     const memberService = new MemberService();
 
@@ -48,25 +48,31 @@ restaurantController.getSignup = (req: Request, res: Response) => {
 restaurantController.processSignup = async(req: AdminRequest, res: Response) => {
     try {
         console.log("Processing signup");  
+        const file = req.file;
+        if(!file) 
+            throw new Errors(HttpCodes.BAD_REQUEST, Messages.SOMETHING_WENT_WRONG);
+
                 const newMember: MemberInput = req.body;
+                newMember.memberImage = file?.path;
                 newMember.memberType = Membertype.RESTAURANT;
                 const result = await memberService.processSignup(newMember);
 
                             req.session.member = result;
                             (req.session as any).save(function () {
-                              res.send(result);
+                              res.redirect('/admin/product/all');
                             });
                         
 
         console.log("Signup processed successfully", result);
     } catch (err) {
         console.log("Error processing signup:", err);
-        res.send(err);
+        const message = err instanceof Errors ? err.message : Messages.SOMETHING_WENT_WRONG;
+         res.send(`<script>alert("${message}"); window.location.replace("/admin/login");</script>`);
     }
 };
 
 
-restaurantController.processLogin = async (req: Request, res: Response) => {
+restaurantController.processLogin = async (req: AdminRequest, res: Response) => {
     try {
         console.log("Processing login");
         console.log("Request Body:", req.body);
@@ -76,7 +82,7 @@ restaurantController.processLogin = async (req: Request, res: Response) => {
 
                                   req.session.member = result;
                             (req.session as any).save(function () {
-                           res.send(result);
+                             res.redirect('/admin/product/all');
                             });
                         
 
