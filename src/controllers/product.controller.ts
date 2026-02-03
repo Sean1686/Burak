@@ -48,7 +48,10 @@ productController.createNewProducts = async(req: AdminRequest, res: Response) =>
 productController.updateChosenProducts = async(req: Request, res: Response) => {
     try {
         console.log("updateChosenProducts");  
-    } catch (err) {
+        const id = req.params.id;
+        const result = await productService.updateChosenProduct(id,req.body)
+        res.status(HttpCodes.OK).json({data: result});
+        } catch (err) {
         console.log("Error, updateProducts:", err);
         if (err instanceof Errors) res.status(err.code).json({ err });
         else res.status(Errors.standard.code).json(Errors.standard);

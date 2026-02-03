@@ -28,3 +28,17 @@ productDescription: string;
 productImages?: string[];
 productViews?: number;
 }
+
+
+export interface ProductUpdateInput {
+productStatus?: ProductStatus;
+productCollection?: ProductCollection;
+productName?: string;
+productPrice?: number;
+productLeftCount?: number;
+productSize?: ProductSize;
+productVolume?: number  ;
+productDescription?: string;
+productImages?: string[];
+productViews?: number;
+}
