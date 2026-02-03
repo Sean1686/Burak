@@ -1,10 +1,24 @@
-// MIT task N
-function paldromCheck(str: string): boolean {
-  return str === str.split('').reverse().join("");
-}
+//MIT task O
 
-  console.log(paldromCheck("dad"));
-  console.log(paldromCheck("son"));
+ function calculateSumOfNumbers(arr: any[]): number {
+  let sum = 0;
+
+  for (const item of arr) {
+    if (typeof item === "number")
+      sum += item
+  }
+  return sum
+ }
+ console.log(calculateSumOfNumbers([10, "10", {son: 10}, true, 35]))
+
+
+// MIT task N
+// function paldromCheck(str: string): boolean {
+//   return str === str.split('').reverse().join("");
+// }
+
+//   console.log(paldromCheck("dad"));
+//   console.log(paldromCheck("son"));
 
 // MIT task M
 // function getSquareNumbers(numbers: number[]) {
