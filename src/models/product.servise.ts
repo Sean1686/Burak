@@ -16,6 +16,12 @@ class ProductService {
 
     /*    SSR    */
 
+        public async getAllProducts():  Promise<Product[]> {
+            const result = await this.productModel.find().exec();
+            if(!result) throw new Errors(HttpCodes.NOT_MODIFIED, Messages.UPDATE_FAILED);
+            return result;
+    }
+
     public async createNewProduct(input: ProductInput): Promise<Product> {
         try {
             return await this.productModel.create(input);
