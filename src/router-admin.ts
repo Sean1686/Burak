@@ -35,5 +35,6 @@ routerAdmin.get("/check-me", restaurantController.checkAuthSession);
                                      productController.updateChosenProducts);
 
     /** User */
+    routerAdmin.get("/user/all", restaurantController.verifyRestaurant, restaurantController.getUsers)
 
 export default routerAdmin;

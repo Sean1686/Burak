@@ -3,6 +3,7 @@ import { MemberInput, Member, LoginInput } from "../libs/types/Member";
 import * as bcrypt from "bcryptjs";
 import Errors, { HttpCodes, Messages } from "../libs/Error";
 import { Membertype as MemberType } from "../libs/types/enums/member.enum";
+import { promises } from "dns";
 
 class MemberService {
     private readonly memberModel: typeof MemberModel;
@@ -90,6 +91,15 @@ class MemberService {
         const result = await this.memberModel.findById(member._id).exec();
 
         console.log("Found member:", result);
+        return result;
+    }
+
+    public async getUsers(): Promise<Member[]> {
+        const result = await this.memberModel
+        .find({memberType: MemberType.USER})
+        .exec();
+        if(!result) throw new Errors(HttpCodes.NOT_FOUND, Messages.NOT_DATA_FOUND)
+        
         return result;
     }
 }
