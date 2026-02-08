@@ -1,9 +1,21 @@
-function objectToArray(obj: Record<string, number>): [string, number][] {
-  return Object.entries(obj);
+function hasProperty<T extends object>(
+  obj: T,
+  prop: PropertyKey
+): prop is keyof T {
+  return Object.prototype.hasOwnProperty.call(obj, prop);
 }
+const car = { name: "BMW", model: "M3" };
+
+console.log(hasProperty(car, "model")); // true
+console.log(hasProperty(car, "year"));  // false
+
+
+// function objectToArray(obj: Record<string, number>): [string, number][] {
+//   return Object.entries(obj);
+// }
 
 // Misol:
-console.log(objectToArray({ a: 10, b: 20 }));
+// console.log(objectToArray({ a: 10, b: 20 }));
 // [["a", 10], ["b", 20]]
 
 
