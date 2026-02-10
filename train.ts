@@ -1,13 +1,25 @@
-function hasProperty<T extends object>(
-  obj: T,
-  prop: PropertyKey
-): prop is keyof T {
-  return Object.prototype.hasOwnProperty.call(obj, prop);
-}
-const car = { name: "BMW", model: "M3" };
 
-console.log(hasProperty(car, "model")); // true
-console.log(hasProperty(car, "year"));  // false
+function getCalculate(numbers: string): number {
+  const parts = numbers.split("+");
+
+  const num1 = Number(parts[0]);
+  const num2 = Number(parts[1]);
+   
+  return num1 + num2;
+}
+console.log(getCalculate("1+3"));
+console.log(getCalculate("5+5"));
+
+// function hasProperty<T extends object>(
+//   obj: T,
+//   prop: PropertyKey
+// ): prop is keyof T {
+//   return Object.prototype.hasOwnProperty.call(obj, prop);
+// }
+// const car = { name: "BMW", model: "M3" };
+
+// console.log(hasProperty(car, "model")); // true
+// console.log(hasProperty(car, "year"));  // false
 
 
 // function objectToArray(obj: Record<string, number>): [string, number][] {
