@@ -29,6 +29,7 @@ productController.getAllProducts = async(req: Request, res: Response) => {
 productController.createNewProducts = async(req: AdminRequest, res: Response) => {
     try {
         console.log("createNewProducts");  
+        console.log("req.body:", req.body);
         if(!req.files || !req.files.length) throw new Errors(HttpCodes.INTERNAL_SERVER_ERROR, Messages.FILE_UPLOAD_ERROR);
 
         const data: ProductInput = req.body;
