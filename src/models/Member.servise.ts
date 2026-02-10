@@ -2,7 +2,7 @@ import MemberModel from "../schema/Member.model";
 import { MemberInput, Member, LoginInput, MemberUpdateInput } from "../libs/types/Member";
 import * as bcrypt from "bcryptjs";
 import Errors, { HttpCodes, Messages } from "../libs/Error";
-import { Membertype as MemberType } from "../libs/types/enums/member.enum";
+import { MemberStatus, Membertype as MemberType } from "../libs/types/enums/member.enum";
 import { promises } from "dns";
 import { shapeIntoMongooseObjectId } from "../libs/config";
 
@@ -33,10 +33,14 @@ class MemberService {
         // TODO: Consider memberStatus check (e.g., active, banned)
         const member = await this.memberModel
         .findOne(
-         {memberNick: input.memberNick},
-         {memberNick: 1, memberPassword: 1,})
+         {memberNick: input.memberNick, memberStatus: { $ne: MemberStatus.DELETE}
+        },
+         {memberNick: 1, memberPassword: 1, memberStatus: 1})
         .exec();
         if (!member) throw new Errors(HttpCodes.NOT_FOUND, Messages.NO_MEMBER_FOUND);
+        else if(member.memberStatus === MemberStatus.BLOCK) {
+            throw new Errors(HttpCodes.FORBIDDEN, Messages.BLOCKED_USER)
+        }
 
         const isMatch = await bcrypt.compare(
          input.memberPassword,
