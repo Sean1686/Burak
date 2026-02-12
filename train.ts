@@ -1,14 +1,26 @@
+//MIT task Q
 
-function getCalculate(numbers: string): number {
-  const parts = numbers.split("+");
-
-  const num1 = Number(parts[0]);
-  const num2 = Number(parts[1]);
-   
-  return num1 + num2;
+function missingNumber(nums: number[]): number {
+  for(let  i = 0; i <= nums.length; i++ ) {
+    if(!nums.includes(i)) {
+      return i
+    }
+  }
+  return -1
 }
-console.log(getCalculate("1+3"));
-console.log(getCalculate("5+5"));
+console.log(missingNumber([3,0,1]))
+
+
+// function getCalculate(numbers: string): number {
+//   const parts = numbers.split("+");
+
+//   const num1 = Number(parts[0]);
+//   const num2 = Number(parts[1]);
+   
+//   return num1 + num2;
+// }
+// console.log(getCalculate("1+3"));
+// console.log(getCalculate("5+5"));
 
 // function hasProperty<T extends object>(
 //   obj: T,
