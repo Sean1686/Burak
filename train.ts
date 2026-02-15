@@ -1,14 +1,53 @@
-//MIT task Q
+// Task T
 
-function missingNumber(nums: number[]): number {
-  for(let  i = 0; i <= nums.length; i++ ) {
-    if(!nums.includes(i)) {
-      return i
+function mergeSortedArrays(arr1: number[], arr2:number[]) {
+  let result = [];   // natijani yig'adigan yangi array
+  let i = 0;         // arr1 uchun ko'rsatkich
+  let j = 0;         // arr2 uchun ko'rsatkich
+
+  // ikkala arrayda ham element bor ekan — solishtiramiz
+  while (i < arr1.length && j < arr2.length) {
+
+    if (arr1[i] < arr2[j]) {
+      result.push(arr1[i]); // kichik elementni resultga qo'sh
+      i++;                  // arr1 dan oldik → i oldinga siljiydi
+    } else {
+      result.push(arr2[j]); // aks holda arr2 dan olamiz
+      j++;                  // arr2 dan oldik → j siljiydi
     }
   }
-  return -1
+
+  // arr1 tugamagan bo'lsa — qolganlarini qo'shamiz
+  while (i < arr1.length) {
+    result.push(arr1[i]);
+    i++;
+  }
+
+  // arr2 tugamagan bo'lsa — qolganlarini qo'shamiz
+  while (j < arr2.length) {
+    result.push(arr2[j]);
+    j++;
+  }
+
+  return result;
 }
-console.log(missingNumber([3,0,1]))
+
+console.log(mergeSortedArrays([0,3,4,31], [4,6,30]));
+
+
+
+
+//MIT task Q
+
+// function missingNumber(nums: number[]): number {
+//   for(let  i = 0; i <= nums.length; i++ ) {
+//     if(!nums.includes(i)) {
+//       return i
+//     }
+//   }
+//   return -1
+// }
+// console.log(missingNumber([3,0,1]))
 
 
 // function getCalculate(numbers: string): number {
