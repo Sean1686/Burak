@@ -1,38 +1,54 @@
+function sumOdds( parametr: number) {
+
+let i = 0;
+let counter = 0;
+for (i = 0; i < parametr; i++) {
+if (i%2 === 1) {
+counter++
+}
+}
+return counter
+}
+const result = sumOdds(9);
+const result2 = sumOdds(15);
+console.log(result)
+console.log(result2)
+
 // Task T
 
-function mergeSortedArrays(arr1: number[], arr2:number[]) {
-  let result = [];   // natijani yig'adigan yangi array
-  let i = 0;         // arr1 uchun ko'rsatkich
-  let j = 0;         // arr2 uchun ko'rsatkich
+// function mergeSortedArrays(arr1: number[], arr2:number[]) {
+//   let result = [];   // natijani yig'adigan yangi array
+//   let i = 0;         // arr1 uchun ko'rsatkich
+//   let j = 0;         // arr2 uchun ko'rsatkich
 
-  // ikkala arrayda ham element bor ekan — solishtiramiz
-  while (i < arr1.length && j < arr2.length) {
+//   // ikkala arrayda ham element bor ekan — solishtiramiz
+//   while (i < arr1.length && j < arr2.length) {
 
-    if (arr1[i] < arr2[j]) {
-      result.push(arr1[i]); // kichik elementni resultga qo'sh
-      i++;                  // arr1 dan oldik → i oldinga siljiydi
-    } else {
-      result.push(arr2[j]); // aks holda arr2 dan olamiz
-      j++;                  // arr2 dan oldik → j siljiydi
-    }
-  }
+//     if (arr1[i] < arr2[j]) {
+//       result.push(arr1[i]); // kichik elementni resultga qo'sh
+//       i++;                  // arr1 dan oldik → i oldinga siljiydi
+//     } else {
+//       result.push(arr2[j]); // aks holda arr2 dan olamiz
+//       j++;                  // arr2 dan oldik → j siljiydi
+//     }
+//   }
 
-  // arr1 tugamagan bo'lsa — qolganlarini qo'shamiz
-  while (i < arr1.length) {
-    result.push(arr1[i]);
-    i++;
-  }
+//   // arr1 tugamagan bo'lsa — qolganlarini qo'shamiz
+//   while (i < arr1.length) {
+//     result.push(arr1[i]);
+//     i++;
+//   }
 
-  // arr2 tugamagan bo'lsa — qolganlarini qo'shamiz
-  while (j < arr2.length) {
-    result.push(arr2[j]);
-    j++;
-  }
+//   // arr2 tugamagan bo'lsa — qolganlarini qo'shamiz
+//   while (j < arr2.length) {
+//     result.push(arr2[j]);
+//     j++;
+//   }
 
-  return result;
-}
+//   return result;
+// }
 
-console.log(mergeSortedArrays([0,3,4,31], [4,6,30]));
+// console.log(mergeSortedArrays([0,3,4,31], [4,6,30]));
 
 
 
