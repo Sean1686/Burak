@@ -60,9 +60,10 @@ restaurantController.processSignup = async (
     newMember.memberImage = file?.path.replace(/\\/g, "/");
     newMember.memberType = Membertype.RESTAURANT;
     const result = await memberService.processSignup(newMember);
-
+console.log("result:::", result)
     req.session.member = result;
-    (req.session as any).save(function () {
+    req.session.save(function () {
+      console.log("r req.session:",  req.session);
       res.redirect("/admin/product/all");
     });
 

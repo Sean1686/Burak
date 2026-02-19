@@ -8,15 +8,15 @@ $(function() {
         if(window.FileReader) {
             const uploadfile = $(this) [0].files[0];
             console.log("uploadFile:", uploadfile);
-            const filetType = uploadFile["type"];
+            const fileType = uploadfile["type"];
             const validImageType = ["image/jpg", "image/jpeg", "image/png"];
-            if(validImageType.includes(filetType)) {
+            if(!validImageType.includes(fileType)) {
                 alert("Please insert only jpeg, jpg and png!")
             } else {
-                if(uploadFile) {
-                    console.log(URL.createObjectURL(uploadFile))
-                    $(".upload-ing-frame")
-                    .attr("src", URL.createObjectURL(uploadFile))
+                if(uploadfile) {
+                    console.log(URL.createObjectURL(uploadfile))
+                    $(".upload-img-frame")
+                    .attr("src", URL.createObjectURL(uploadfile))
                     .addClass("success");
                 }
                 filename = $(this)[0].files[0].name;

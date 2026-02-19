@@ -36,12 +36,16 @@ class ProductService {
          input: ProductUpdateInput):
          Promise<Product> {
             id = shapeIntoMongooseObjectId(id);
+                        console.log("step 3:")
+
             const result = await this.productModel
             .findOneAndUpdate({_id: id}, input, {new: true})
             .exec();
             if(!result) throw new Errors(HttpCodes.NOT_MODIFIED, Messages.UPDATE_FAILED);
 
-            console.log("result:", result);
+            // console.log("result:", result);
+                        console.log("step 4:")
+
             return result;
     }
 }

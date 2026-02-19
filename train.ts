@@ -1,18 +1,33 @@
-function sumOdds( parametr: number) {
+// V task
 
-let i = 0;
-let counter = 0;
-for (i = 0; i < parametr; i++) {
-if (i%2 === 1) {
-counter++
+function countChars(char: string) {
+    let result: Record<string, number> = {};
+    for(let c of char) {
+        if(result[c]) {
+            result[c]++
+        } else {
+            result[c] = 1
+        }
+    }
+    return result
 }
-}
-return counter
-}
-const result = sumOdds(9);
-const result2 = sumOdds(15);
-console.log(result)
-console.log(result2)
+console.log(countChars("hello"))
+
+// function sumOdds( parametr: number) {
+
+// let i = 0;
+// let counter = 0;
+// for (i = 0; i < parametr; i++) {
+// if (i%2 === 1) {
+// counter++
+// }
+// }
+// return counter
+// }
+// const result = sumOdds(9);
+// const result2 = sumOdds(15);
+// console.log(result)
+// console.log(result2)
 
 // Task T
 
