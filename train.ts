@@ -1,17 +1,33 @@
-// W task
+function countOccurrences(obj: Record<string, any>, keyName: string) {
+  let count = 0;
+  for (let key in obj) {
+    const value = obj[key];
+    if(key === keyName) {
+      count ++
+    } else if (typeof value === "object" && value !== null) {
+            count ++
 
-function chunkArray(arr: number[], size: number) {
-    let result = [];
-    let i = 0;
-    for(let i = 0; i < arr.length; i = i + size){
-      const chunk = arr.slice(i, i + size)
-        result.push(chunk)
     }
-        return result;
+  }
+  return count
 }
 
-const result1 = chunkArray([1,2,3,4,5,6,7,8,9,10], 3);
-console.log(result1)
+console.log(countOccurrences({model: 'Bugatti', steer: {model: 'HANKOOK', size: 30}}, 'model'))
+
+// W task
+
+// function chunkArray(arr: number[], size: number) {
+//     let result = [];
+//     let i = 0;
+//     for(let i = 0; i < arr.length; i = i + size){
+//       const chunk = arr.slice(i, i + size)
+//         result.push(chunk)
+//     }
+//         return result;
+// }
+
+// const result1 = chunkArray([1,2,3,4,5,6,7,8,9,10], 3);
+// console.log(result1)
 
 
 // V task 
