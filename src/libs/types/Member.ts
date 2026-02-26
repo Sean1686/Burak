@@ -5,6 +5,7 @@ import {ObjectId} from "mongoose";
 
 
 export interface Member {
+    _id: ObjectId;
     memberType: Membertype;
     memberNick: string;
     memberStatus: MemberStatus;

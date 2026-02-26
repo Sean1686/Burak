@@ -50,7 +50,7 @@ memberController.login = async (req: Request, res: Response) => {
     }
 };
 
-memberController.logout = async (req: Request, res: Response) => {
+memberController.logout = async (req: ExtendedRequest, res: Response) => {
 try{
 console.log("logout");
 res.cookie("accessToken", null, { maxAge: 0, httpOnly: true});
@@ -62,11 +62,24 @@ res.cookie("accessToken", null, { maxAge: 0, httpOnly: true});
     }
 }
 
-memberController.verifyAuth = async (req: Request, res: Response, next: NextFunction) => {
+memberController.getMemberDetail = async (req: ExtendedRequest, res: Response) => {
+try{
+console.log("getMemberDetail");
+const result = await memberService.getMemberDetail(req.member)
+res.status(HttpCodes.OK).json(result)
+}catch (error) {
+        if (error instanceof Errors) res.status(error.code).json({ error });
+        else res.status(Errors.standard.code).json(Errors.standard);
+    }
+}
+
+
+memberController.verifyAuth = async (req: ExtendedRequest, res: Response, next: NextFunction) => {
 try{
     let member = null;
 const token = req.cookies["accessToken"];
 if(token) member = await authService.checkAuth(token)
+    if(!req.member) throw new Errors(HttpCodes.UNAUTHORIZED, Messages.NOT_AUTHENTICATED)
 
  next();
 }catch (error) {
