@@ -1,4 +1,3 @@
-// Task Y
 function findIntersections(arr1: number[], arr2: number[]) {
   let result = [];
   for(let i = 0; i < arr1.length; i++) {
@@ -9,10 +8,10 @@ function findIntersections(arr1: number[], arr2: number[]) {
   return result
 }
 
-console.log(findIntersections([1,2,2,3,4], [2,2,4]))
+console.log(findIntersections([1,2,3,4], [2,4]))
 
 
-// X task
+// Y task
 // function countOccurrences(obj: Record<string, any>, keyName: string) {
 //   let count = 0;
 //   for (let key in obj) {
