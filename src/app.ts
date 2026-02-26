@@ -4,6 +4,7 @@ import router from "./router";
 import routerAdmin from "./router-admin";
 import Memberservise from "./models/Member.servise";    
 import morgan from "morgan";
+import cookieParser from "cookie-parser";
 import { MORGAN_FORMAT } from "./libs/config";
 
 import session from "express-session";
@@ -21,6 +22,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "public")))
 app.use(express.urlencoded({extended: true})); // HTML form kelayotgan requestlarni parse(tartib bilan orgniga qoyib beradi) qilish uchun
 app.use(express.json()); // json formatdagi kelayotgan requestlarni obyektga ozgartirish uchun
+app.use(cookieParser());
 app.use(morgan(MORGAN_FORMAT));
 /** 2-SESSION */
 app.use(
