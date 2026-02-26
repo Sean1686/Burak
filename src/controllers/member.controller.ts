@@ -4,16 +4,19 @@ import express, { Request, Response } from 'express';
 import MemberService from "../models/Member.servise";
 import { Member, MemberInput } from "../libs/types/Member";
 import Errors, { HttpCodes } from "../libs/Error";
+import AuthService from "../models/Auth.service";
 
     const memberService = new MemberService();
+    const authService = new AuthService();
 
 const memberController: T = {};
 memberController.signup = async(req: Request, res: Response) => {
     try {
         console.log("Signup");  
-                console.log("Request Body:", req.body);
                 const input: MemberInput = req.body,
                  result: Member = await memberService.signup(input);
+                 const token = await authService.createToken(result);
+                 console.log("token:::", token)
                               //  TODO: TOKEN GENERATE HERE
 
                res.json({ member: result });
@@ -26,12 +29,11 @@ memberController.signup = async(req: Request, res: Response) => {
 memberController.login = async (req: Request, res: Response) => {
     try {
         console.log("Login");
-        console.log("Request Body:", req.body);
         const input: LoginInput = req.body,
         // Here you would typically call a method on memberService to process the login
-         result: Member = await memberService.login(input);
-                         //  TODO: TOKEN GENERATE HERE
-
+         result: Member = await memberService.login(input),
+          token = await authService.createToken(result);
+         console.log("token =>", token)
 
           res.json({ member: result });
     } catch (error) {

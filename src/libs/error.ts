@@ -20,6 +20,7 @@ export enum Messages {
     UNAUTHORIZED = "You are not authorized to access this resource.",
     FORBIDDEN = "Access to this resource is forbidden.",
     BAD_REQUEST = "The request was invalid or cannot be served.",
+    TOKEN_CREATION_ERROR = "Token creation error!",
 
     USED_NICK_PHONE = "The nickname or phone number is already in use.",
     NO_MEMBER_FOUND = "No member found with the provided credentials.",
