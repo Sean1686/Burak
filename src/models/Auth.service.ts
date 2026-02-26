@@ -4,9 +4,13 @@ import { Member } from "../libs/types/Member";
 import jwt from "jsonwebtoken";
 import { HttpCodes } from "../libs/Error";
 import { Messages } from "../libs/Error";
+import { PublicKeyInput, JsonWebKeyInput } from "node:crypto";
 
 class AuthService {
-  constructor() {}
+    private readonly secretToken: jwt.Secret | PublicKeyInput | Buffer<ArrayBufferLike> | JsonWebKeyInput;
+  constructor() {
+    this.secretToken = process.env.SECRET_TOKEN as string;
+  }
 
   public async createToken(payload: Member) {
     return new Promise((resolve, reject) => {
@@ -27,6 +31,16 @@ class AuthService {
       );
     });
   }
+
+public async checkAuth(token: string): Promise<Member> {
+const result: Member = (await jwt.verify(
+    token,
+    this.secretToken 
+)) as Member
+console.log(` --- [AUTH] memberNick: ${result.memberNick} ---`);
+return result
+}
+
 }
 
 export default AuthService;
