@@ -1,14 +1,30 @@
-function findIntersections(arr1: number[], arr2: number[]) {
-  let result = [];
-  for(let i = 0; i < arr1.length; i++) {
- if(arr2.includes(arr1[i])) {
-      result.push(arr1[i])
- }
+// Task Z
+
+function sumEvens(arr: number[]) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if(arr[i] % 2 === 0) {
+      sum = sum + arr[i]
+    }
   }
-  return result
+  return sum
 }
 
-console.log(findIntersections([1,2,3,4], [2,4]))
+console.log(sumEvens([1,2,3,4]))
+
+// Task Y
+
+// function findIntersections(arr1: number[], arr2: number[]) {
+//   let result = [];
+//   for(let i = 0; i < arr1.length; i++) {
+//  if(arr2.includes(arr1[i])) {
+//       result.push(arr1[i])
+//  }
+//   }
+//   return result
+// }
+
+// console.log(findIntersections([1,2,3,4], [2,4]))
 
 
 // Y task

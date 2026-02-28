@@ -27,7 +27,7 @@ export enum Messages {
     BLOCKED_USER = "You have been blocked, contact restaurant!",
     WRONG_PASSWORD = "The password provided is incorrect.",
 
-    NOT_AUTHENTICATED = 'You must be logged in first to access this resource.',
+    NOT_AUTHENTICATED = 'You are not authenticated. Please login first!.',
     FILE_UPLOAD_ERROR = "File upload error!",
     TOKEN_CREATION_FAILED = "Token creation failed!",
 }
