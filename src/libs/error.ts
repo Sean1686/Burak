@@ -28,7 +28,8 @@ export enum Messages {
     WRONG_PASSWORD = "The password provided is incorrect.",
 
     NOT_AUTHENTICATED = 'You must be logged in first to access this resource.',
-    FILE_UPLOAD_ERROR = "FILE_UPLOAD_ERROR",
+    FILE_UPLOAD_ERROR = "File upload error!",
+    TOKEN_CREATION_FAILED = "Token creation failed!",
 }
 class Errors extends Error {
     public code: HttpCodes;

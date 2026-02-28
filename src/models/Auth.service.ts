@@ -4,43 +4,70 @@ import { Member } from "../libs/types/Member";
 import jwt from "jsonwebtoken";
 import { HttpCodes } from "../libs/Error";
 import { Messages } from "../libs/Error";
-import { PublicKeyInput, JsonWebKeyInput } from "node:crypto";
 
+// AuthService klassi – JWT token yaratish va tekshirish uchun
 class AuthService {
-    private readonly secretToken: jwt.Secret | PublicKeyInput | Buffer<ArrayBufferLike> | JsonWebKeyInput;
+  // Token yaratish uchun sirli kalit
+  private readonly secretToken;
+
   constructor() {
+    // SECRET_TOKEN env variable dan olinadi
+    // Agar .env faylda bo'lmasa, kod xato beradi
     this.secretToken = process.env.SECRET_TOKEN as string;
   }
 
+  // ======================= CREATE TOKEN =======================
+  // Kiruvchi param: payload (Member object)
+  // Chiquvchi natija: JWT string
   public async createToken(payload: Member) {
     return new Promise((resolve, reject) => {
-      const duration = `${AUTH_TIMER}h`;
+      // Token muddati (config fayldan)
+      const duration = `${AUTH_TIMER}h`; // Masalan 2h, 24h va hokazo
+
+      // JWT sign – payloadni token ichiga joylashtirish
       jwt.sign(
-        payload,
-        process.env.SECRET_TOKEN as string,
+        payload,                       // Token ichiga yoziladigan ma'lumot
+        process.env.SECRET_TOKEN as string, // Sirli kalit
         {
-          expiresIn: duration,
+          expiresIn: duration,         // Tokenning amal qilish muddati
         },
         (err, token) => {
-          if (err)
+          if (err) {
+            // Agar token yaratishda xato bo‘lsa, reject qilamiz
             reject(
-              new Errors(HttpCodes.UNAUTHORIZED, Messages.TOKEN_CREATION_ERROR),
+              new Errors(
+                HttpCodes.UNAUTHORIZED,         // 401 status
+                Messages.TOKEN_CREATION_FAILED  // Xato xabar
+              )
             );
-          else resolve(token as string);
-        },
+          } else {
+            // Token muvaffaqiyatli yaratilsa, resolve qilamiz
+            resolve(token as string);
+          }
+        }
       );
     });
   }
 
-public async checkAuth(token: string): Promise<Member> {
-const result: Member = (await jwt.verify(
-    token,
-    this.secretToken 
-)) as Member
-console.log(` --- [AUTH] memberNick: ${result.memberNick} ---`);
-return result
+  // ======================= CHECK AUTH =======================
+  // Kiruvchi param: token (JWT string)
+  // Chiquvchi natija: Member object agar token valid bo‘lsa
+  public async checkAuth(token: string): Promise<Member> {
+    try {
+      // jwt.verify – tokenni tekshiradi va payloadni qaytaradi
+      const result: Member = (await jwt.verify(token, this.secretToken)) as Member;
+
+      // Log yozamiz – token orqali qaysi member kelganini ko‘rsatish
+      console.log(`--- [AUTH]  memberNick : ${result.memberNick}`);
+
+      // Agar token valid bo‘lsa, Member objectni qaytaramiz
+      return result;
+    } catch (err) {
+      // Token noto‘g‘ri yoki muddati tugagan bo‘lsa, xato tashlaymiz
+      throw new Errors(HttpCodes.UNAUTHORIZED, Messages.TOKEN_CREATION_FAILED);
+    }
+  }
 }
 
-}
-
+// Default export qilish
 export default AuthService;
