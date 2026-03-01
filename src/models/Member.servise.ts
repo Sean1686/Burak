@@ -93,6 +93,18 @@ class MemberService {
     return result;
   }
 
+  public async getTopUsers(): Promise<Member[]> {
+    const result = await this.memberModel.find({
+      memberStatus: MemberStatus.ACTIVE, 
+      memberPoint: { gte: 1 },
+    })
+    .sort({ memberPoints: -1})
+    .limit(4)
+    .exec();
+    if (!result) throw new Errors(HttpCodes.NOT_FOUND, Messages.NOT_DATA_FOUND)
+    return result
+  }
+
   /** SSR */
 
   public async processSignup(input: MemberInput): Promise<Member> {

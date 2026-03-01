@@ -155,6 +155,24 @@ memberController.updateMember = async ( req: ExtendedRequest, res: Response) => 
   }
 }
 
+memberController.getTopUsers = async (req: Request, res: Response) => {
+   try {
+        // Log yozamiz, request kirganini bildirish uchun
+    console.log("getTopUsers");
+
+    const result = await memberService.getTopUsers();
+    
+    res.status(HttpCodes.OK).json(result)
+  } catch (err) {
+    // Error holatidni konsolga chiqaramiz
+    console.log("Error, getTopUsers:", err);
+        // Agar bu Errors tipidagi xato bo'lsa, xato kod va xabarni qaytaramiz
+    if(err instanceof Errors) res.status(err.code).json(err);
+        // Aks holda, standart xato kodni yuboramiz
+    else res.status(Errors.standard.code).json(Errors.standard)
+  }
+}
+
 memberController.verifyAuth = async (
   req: ExtendedRequest,
   res: Response,
