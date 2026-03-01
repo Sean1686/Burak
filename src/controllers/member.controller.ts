@@ -11,6 +11,26 @@ import { AUTH_TIMER } from "../libs/config";
     const authService = new AuthService();
 
 const memberController: T = {};
+memberController.getRestaurant = async (req: Request, res: Response) => {
+   try {
+    // Log yozamiz, Request kirganini bilish uchun
+    console.log("getRestaurant called");
+
+       const result = await memberService.getRestaurant();
+
+    // Agar ma'lumot topilsa, HTTP 200 status bilan JSON javob qaytaramiz
+    res.status(HttpCodes.OK).json(result);
+  } catch (err) {
+    // Error holatida konsolga chiqaramiz
+    console.log("Error in getRestaurant:", err);
+
+    // Agar bu Errors tipidagi xato bo'lsa, xato kod va xabarni qaytaramiz
+    if (err instanceof Errors) res.status(err.code).json(err);
+    // Aks holda, standart xato kodni yuboramiz
+    else res.status(Errors.standard.code).json(Errors.standard);
+  }
+}
+
 memberController.signup = async (req: Request, res: Response) => {
   try {
     console.log("signup called");
