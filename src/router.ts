@@ -21,7 +21,8 @@ router.get("/member/detail",
  router.post("/member/update", 
   memberController.verifyAuth, 
   uploader("members")
-  .single("memberImage")
+  .single("memberImage"),
+  memberController.updateMember
 );
 
 // Product //

@@ -1,4 +1,4 @@
-import { ExtendedRequest, LoginInput } from "../libs/types/Member";
+import { ExtendedRequest, LoginInput, MemberUpdateInput } from "../libs/types/Member";
 import { T } from "../libs/types/common";
 import express, { NextFunction, Request, response, Response } from 'express';
 import MemberService from "../models/Member.servise";
@@ -136,6 +136,24 @@ memberController.getMemberDetail = async (req: ExtendedRequest, res: Response) =
   }
 };
 
+memberController.updateMember = async ( req: ExtendedRequest, res: Response) => {
+  try {
+        // Log yozamiz, request kirganini bildirish uchun
+    console.log("updateMember");
+    const input: MemberUpdateInput = req.body
+    if (req.file) input.memberImage = req.file.path.replace(/\\/, "/");
+    const result = await memberService.updateMember(req.member, input);
+
+    res.status(HttpCodes.OK).json(result);
+  } catch (err) {
+    // Error holatidni konsolga chiqaramiz
+    console.log("Error, updateMember:", err);
+        // Agar bu Errors tipidagi xato bo'lsa, xato kod va xabarni qaytaramiz
+    if(err instanceof Errors) res.status(err.code).json(err);
+        // Aks holda, standart xato kodni yuboramiz
+    else res.status(Errors.standard.code).json(Errors.standard)
+  }
+}
 
 memberController.verifyAuth = async (
   req: ExtendedRequest,
