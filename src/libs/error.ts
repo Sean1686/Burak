@@ -13,7 +13,7 @@ export enum HttpCodes {
 export enum Messages {
     SOMETHING_WENT_WRONG = "Something went wrong. Please try again.",
     GENERIC_ERROR = "An unexpected error occurred. Please try again later.",
-    NOT_DATA_FOUND = "The requested resource was not found.",
+    NO_DATA_FOUND = "The requested resource was not found.",
     CREATE_FAILED = "Failed to create the resource.",
     UPDATE_FAILED = "Failed to update the resource.",
     DELETE_FAILED = "Failed to delete the resource.",

@@ -7,6 +7,7 @@ import { shapeIntoMongooseObjectId } from "../libs/config";
 import { Member } from "../libs/types/Member";
 import { ProductCollection, ProductStatus } from "../libs/types/enums/product.enum";
 import { T } from "../libs/types/common";
+import { ObjectId } from "mongoose"
 
 class ProductService {
     private readonly productModel;
@@ -35,8 +36,25 @@ class ProductService {
         { $limit: inquiry.limit * 1},
     ])
     .exec();
-    if (!result) throw new Errors(HttpCodes.NOT_FOUND, Messages.NOT_DATA_FOUND);
-     return []
+    if (!result) throw new Errors(HttpCodes.NOT_FOUND, Messages.NO_DATA_FOUND);
+     return result
+    }
+
+    public async getProduct(
+        memberId: ObjectId | null, 
+        id: string
+    ): Promise<Product> {
+        const productId = shapeIntoMongooseObjectId(id);
+
+        let result = await this.productModel.findOne({
+            _id: productId, 
+            productStatus: ProductStatus.PROCESS
+        })
+        .exec();
+        if(!result) throw new Errors(HttpCodes.NOT_FOUND, Messages.NO_DATA_FOUND);
+
+        // TODO: if authenticated users => first => view log creation
+        return result;
     }
 
     /*    SSR    */

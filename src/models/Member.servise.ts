@@ -28,7 +28,7 @@ class MemberService {
     .findOne({ memberType: MemberType.RESTAURANT })
     .lean()
     .exec();
-  if  (!result) throw new Errors(HttpCodes.NOT_FOUND, Messages.NOT_DATA_FOUND);
+  if  (!result) throw new Errors(HttpCodes.NOT_FOUND, Messages.NO_DATA_FOUND);
 
   return result
   }
@@ -84,7 +84,7 @@ class MemberService {
     })
     .exec();
     
-  if (!result) throw new Errors(HttpCodes.NOT_FOUND, Messages.NOT_DATA_FOUND);
+  if (!result) throw new Errors(HttpCodes.NOT_FOUND, Messages.NO_DATA_FOUND);
 
   return result
   }
@@ -110,7 +110,7 @@ class MemberService {
     .sort({ memberPoints: -1})
     .limit(4)
     .exec();
-    if (!result) throw new Errors(HttpCodes.NOT_FOUND, Messages.NOT_DATA_FOUND)
+    if (!result) throw new Errors(HttpCodes.NOT_FOUND, Messages.NO_DATA_FOUND)
     return result
   }
 
@@ -166,7 +166,7 @@ class MemberService {
     const result = await this.memberModel
       .find({ memberType: MemberType.USER })
       .exec();
-    if (!result) throw new Errors(HttpCodes.NOT_FOUND, Messages.NOT_DATA_FOUND);
+    if (!result) throw new Errors(HttpCodes.NOT_FOUND, Messages.NO_DATA_FOUND);
 
     return result;
   }
@@ -176,7 +176,7 @@ class MemberService {
     const result = await this.memberModel
       .findByIdAndUpdate({ _id: input._id }, input, { new: true })
       .exec();
-    if (!result) throw new Errors(HttpCodes.NOT_FOUND, Messages.NOT_DATA_FOUND);
+    if (!result) throw new Errors(HttpCodes.NOT_FOUND, Messages.NO_DATA_FOUND);
 
     return result;
   }
