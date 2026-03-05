@@ -1,3 +1,10 @@
+
+function randomBetween(arr1: number, arr2: number) {
+    const randomNum = Math.random() * (arr2 - arr1) + arr1
+    return Math.floor(randomNum)
+}
+console.log(randomBetween(30, 50))
+
 // Task ZA
 
 // type Person = {
