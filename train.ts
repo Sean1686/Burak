@@ -1,9 +1,22 @@
+// ZC-TASK
 
-function randomBetween(arr1: number, arr2: number) {
-    const randomNum = Math.random() * (arr2 - arr1) + arr1
-    return Math.floor(randomNum)
+// Shunday function yozing, uni number parametri bolsin va function qabul parametrni
+//  selsiy miqdori sifatida qabul qilib uni farenhitga ozgartirib bersin. 
+// MASALAN: celsiusToFahrenheit(0) return 32.
+
+
+function celsiusToFahrenheit(celsius: number) {
+    let fahrenheit = celsius * 9/5 + 32;
+    return fahrenheit
 }
-console.log(randomBetween(30, 50))
+
+console.log(celsiusToFahrenheit(0))
+
+// function randomBetween(arr1: number, arr2: number) {
+//     const randomNum = Math.random() * (arr2 - arr1) + arr1
+//     return Math.floor(randomNum)
+// }
+// console.log(randomBetween(30, 50))
 
 // Task ZA
 

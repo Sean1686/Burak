@@ -58,11 +58,11 @@ orderController.updateOrder = async (req: ExtendedRequest, res: Response) => {
 
      res.status(HttpCodes.CREATED).json(result)
     }  catch (err) {
-    // Error holatida konsolga chiqaramiz
+    // Error holatida consolga chiqaramiz
     console.log("Error in updateOrder:", err);
-    // Agar bu Errors tipidagi xato bo'lsa, xato kod va xabarni qaytaramiz
+    // Agar bu Errors turidagi xato bo'lsa, xato kod va xabarni qaytaramiz
     if (err instanceof Errors) res.status(err.code).json(err);
-    // Aks holda, standart xato kodni yuboramiz
+    // Yokida, standart xato kodni yuboramiz
     else res.status(Errors.standard.code).json(Errors.standard);
   }
 }
