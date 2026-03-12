@@ -1,3 +1,12 @@
+
+function changeNumberInArray(index: number, arr: number[], newNumber: number): number[] {
+  arr[index] = newNumber;
+  return arr;
+}
+
+// Misol
+console.log(changeNumberInArray(1, [1, 3, 7, 2], 2));;
+
 // ZC-TASK
 
 // Shunday function yozing, uni number parametri bolsin va function qabul parametrni
@@ -5,12 +14,12 @@
 // MASALAN: celsiusToFahrenheit(0) return 32.
 
 
-function celsiusToFahrenheit(celsius: number) {
-    let fahrenheit = celsius * 9/5 + 32;
-    return fahrenheit
-}
+// function celsiusToFahrenheit(celsius: number) {
+//     let fahrenheit = celsius * 9/5 + 32;
+//     return fahrenheit
+// }
 
-console.log(celsiusToFahrenheit(0))
+// console.log(celsiusToFahrenheit(0))
 
 // function randomBetween(arr1: number, arr2: number) {
 //     const randomNum = Math.random() * (arr2 - arr1) + arr1
