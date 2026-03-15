@@ -1,10 +1,16 @@
-
-function changeNumberInArray(index: number, arr: number[], newNumber: number): number[] {
-  arr[index] = newNumber;
-  return arr;
+function removeDuplicate(str: string): string {
+  return [...new Set(str)].join("");
 }
 
-console.log(changeNumberInArray(1, [1, 3, 7, 2], 2));;
+console.log(removeDuplicate("stringg")); 
+
+
+// function changeNumberInArray(index: number, arr: number[], newNumber: number): number[] {
+//   arr[index] = newNumber;
+//   return arr;
+// }
+
+// console.log(changeNumberInArray(1, [1, 3, 7, 2], 2));;
 
 // ZC-TASK
 
