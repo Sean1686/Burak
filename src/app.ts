@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import path from "path";
 import router from "./router";
 import routerAdmin from "./router-admin";
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use("/uploads", express.static("./uploads"));
 app.use(express.urlencoded({extended: true})); // HTML form kelayotgan requestlarni parse(tartib bilan orgniga qoyib beradi) qilish uchun
 app.use(express.json()); // json formatdagi kelayotgan requestlarni obyektga ozgartirish uchun
+app.use(cors({ credentials: true, origin: true})); // ixtiyoriy domain serveridan kirishiga ruxsat beradi
 app.use(cookieParser());
 app.use(morgan(MORGAN_FORMAT));
 /** 2-SESSION */

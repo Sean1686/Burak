@@ -20,6 +20,7 @@ productController.getProducts = async (req: Request, res: Response) => {
     page: Number(page),
     limit: Number(limit)
    };
+   console.log("inquiry:", inquiry)
    if (productCollection) {
     inquiry.productCollection = productCollection as ProductCollection
    }

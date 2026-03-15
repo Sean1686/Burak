@@ -4,7 +4,6 @@ function changeNumberInArray(index: number, arr: number[], newNumber: number): n
   return arr;
 }
 
-// Misol
 console.log(changeNumberInArray(1, [1, 3, 7, 2], 2));;
 
 // ZC-TASK

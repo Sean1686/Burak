@@ -30,6 +30,7 @@ class ProductService {
     if (inquiry.search) {
         match.productName = { $regex: new RegExp(inquiry.search, "i") }
     }
+
     const sort: T = inquiry.order === "productPrice" 
     ? {[inquiry.order]: 1} 
     : {[inquiry.order]: -1}
@@ -42,6 +43,7 @@ class ProductService {
     ])
     .exec();
     if (!result) throw new Errors(HttpCodes.NOT_FOUND, Messages.NO_DATA_FOUND);
+        console.log("result:", result)
      return result
     }
 
