@@ -1,8 +1,25 @@
-function removeDuplicate(str: string): string {
-  return [...new Set(str)].join("");
-}
+// ZF task
 
-console.log(removeDuplicate("stringg")); 
+function capitalizeWords(str: string) {
+  let words = str.split(" ");
+
+  let result = words.map(word => {
+    if (word.length <= 2) {
+      return word;
+    } else {
+      return word[0].toUpperCase() + word.slice(1);
+    }
+  });
+
+  return result.join(" ");
+}
+console.log(capitalizeWords('name should be a striing'))
+
+// function removeDuplicate(str: string): string {
+//   return [...new Set(str)].join("");
+// }
+
+// console.log(removeDuplicate("stringg")); 
 
 
 // function changeNumberInArray(index: number, arr: number[], newNumber: number): number[] {
