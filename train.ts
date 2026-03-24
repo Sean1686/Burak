@@ -1,19 +1,27 @@
+// ZG task
+
+function toSnaleCase(str: string) {
+  const result = str.split(" ").join("_")
+  return result
+}
+console.log(toSnaleCase('name should be a string'))
+
 // ZF task
 
-function capitalizeWords(str: string) {
-  let words = str.split(" ");
+// function capitalizeWords(str: string) {
+//   let words = str.split(" ");
 
-  let result = words.map(word => {
-    if (word.length <= 2) {
-      return word;
-    } else {
-      return word[0].toUpperCase() + word.slice(1);
-    }
-  });
+//   let result = words.map(word => {
+//     if (word.length <= 2) {
+//       return word;
+//     } else {
+//       return word[0].toUpperCase() + word.slice(1);
+//     }
+//   });
 
-  return result.join(" ");
-}
-console.log(capitalizeWords('name should be a striing'))
+//   return result.join(" ");
+// }
+// console.log(capitalizeWords('name should be a striing'))
 
 // function removeDuplicate(str: string): string {
 //   return [...new Set(str)].join("");

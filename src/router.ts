@@ -29,7 +29,7 @@ router.get("/member/detail",
   memberController.updateMember
 );
 
-router.post("/member/top-users", memberController.getTopUsers)
+router.get("/member/top-users", memberController.getTopUsers)
 // Product //
 router.get("/product/all", productController.getProducts);
 router.get("/product/:id", 
