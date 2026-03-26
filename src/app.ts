@@ -21,7 +21,7 @@ const store = new MongoDBStore({
 /** 1-ENTRANCE */
 const app = express();
 app.use(express.static(path.join(__dirname, "public")))
-app.use("/uploads", express.static("./uploads"));
+app.use("/uploads", express.static("/uploads"));
 app.use(express.urlencoded({extended: true})); // HTML form kelayotgan requestlarni parse(tartib bilan orgniga qoyib beradi) qilish uchun
 app.use(express.json()); // json formatdagi kelayotgan requestlarni obyektga ozgartirish uchun
 app.use(cors({ credentials: true, origin: true})); // ixtiyoriy domain serveridan kirishiga ruxsat beradi
