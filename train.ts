@@ -1,10 +1,27 @@
+function findDisappearedNumbers(arr: number[]): number[] {
+    const result: number[] = [];
+    const max: number = Math.max(...arr);
+
+    const set: Set<number> = new Set(arr);
+
+    for (let i = 1; i <= max; i++) {
+        if (!set.has(i)) {
+            result.push(i);
+        }
+    }
+
+    return result;
+}
+
+console.log(findDisappearedNumbers([1, 3, 4, 7]));
+
 // ZG task
 
-function toSnaleCase(str: string) {
-  const result = str.split(" ").join("_")
-  return result
-}
-console.log(toSnaleCase('name should be a string'))
+// function toSnaleCase(str: string) {
+//   const result = str.split(" ").join("_")
+//   return result
+// }
+// console.log(toSnaleCase('name should be a string'))
 
 // ZF task
 
