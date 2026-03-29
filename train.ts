@@ -1,19 +1,40 @@
-function findDisappearedNumbers(arr: number[]): number[] {
-    const result: number[] = [];
-    const max: number = Math.max(...arr);
+// ZI-TASK
 
-    const set: Set<number> = new Set(arr);
+// Shunday function yozing, 
+// u function ishga tushgandan 3 soniyadan keyin "Hello World" ni qaytarsin. 
+// MASALAN: delayHelloWorld("Hello World") return "Hello World".
 
-    for (let i = 1; i <= max; i++) {
-        if (!set.has(i)) {
-            result.push(i);
-        }
-    }
-
-    return result;
+function delayHelloWorld(text: string) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("HELLO WORLD")
+    }, 3000);
+  });
 }
 
-console.log(findDisappearedNumbers([1, 3, 4, 7]));
+async function run() {
+    const result = await delayHelloWorld("HELLO WORLD");
+    console.log(result)
+}
+run()
+
+//** ======================================================== */
+// function findDisappearedNumbers(arr: number[]): number[] {
+//     const result: number[] = [];
+//     const max: number = Math.max(...arr);
+
+//     const set: Set<number> = new Set(arr);
+
+//     for (let i = 1; i <= max; i++) {
+//         if (!set.has(i)) {
+//             result.push(i);
+//         }
+//     }
+
+//     return result;
+// }
+
+// console.log(findDisappearedNumbers([1, 3, 4, 7]));
 
 // ZG task
 
