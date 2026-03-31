@@ -1,22 +1,42 @@
+// ZJ-TASK
+// Shunday function yozing, 
+// u berilgan arrayni ichidagi numberlarni qiymatini hisoblab qaytarsin. 
+// MASALAN: reduceNestedArray([1, [1, 2, [4]]]) return 8.
+
+
+function reduceNestedArray(arr: any[]) {
+  let sum = 0;
+  for(const i of arr ) {
+  if(typeof i === "number") {
+    sum += i
+  } else if(Array.isArray(i)) {
+    sum += reduceNestedArray(i) 
+  }
+}
+return sum
+}
+
+console.log(reduceNestedArray([1, [1, 2, [4]]]))
+
 // ZI-TASK
 
 // Shunday function yozing, 
 // u function ishga tushgandan 3 soniyadan keyin "Hello World" ni qaytarsin. 
 // MASALAN: delayHelloWorld("Hello World") return "Hello World".
 
-function delayHelloWorld(text: string) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve("HELLO WORLD")
-    }, 3000);
-  });
-}
+// function delayHelloWorld(text: string) {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve("HELLO WORLD")
+//     }, 3000);
+//   });
+// }
 
-async function run() {
-    const result = await delayHelloWorld("HELLO WORLD");
-    console.log(result)
-}
-run()
+// async function run() {
+//     const result = await delayHelloWorld("HELLO WORLD");
+//     console.log(result)
+// }
+// run()
 
 //** ======================================================== */
 // function findDisappearedNumbers(arr: number[]): number[] {
