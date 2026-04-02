@@ -1,3 +1,19 @@
+function printNumbers() {
+  let count = 1;
+
+  const interval = setInterval(() => {
+    console.log(count);
+    count++;
+
+    if (count > 5) {
+      clearInterval(interval);
+    }
+  }, 1000);
+}
+
+printNumbers();
+
+
 // ZJ-TASK
 // Shunday function yozing, 
 // u berilgan arrayni ichidagi numberlarni qiymatini hisoblab qaytarsin. 
